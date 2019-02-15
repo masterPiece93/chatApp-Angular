@@ -1,0 +1,36 @@
+<div class="chat">
+    
+        <div class="chat_header">
+            <h3>Chat Box</h3>
+            <h3 title="Edit your User Id" (click)="showEditPanel = true;" style="cursor:pointer">{{user}}</h3>
+        </div>
+        <div *ngIf="showEditPanel" style="border: 2px solid #98A0E8;
+        border-radius: 5px;    top: 9%;
+        left: 68%;
+        position: absolute;">
+          <div style="display: flex;
+          justify-content: flex-end;"><span style="cursor:pointer;font-size: 2em;" (click)="showEditPanel = false;">&#10799;</span></div>
+          <div style="    display: flex;
+          justify-content: center;
+          margin-bottom: 12%;
+          padding-left: 8px;">
+          <label for="user">Enter your name:</label>
+            <input style="    border: 1px solid lightblue;
+            border-radius: 5px;" type="text" name="user" #userName (keyup.enter)="edit(userName.value)">
+          </div>
+        </div>
+        <div *ngFor="let message of messages">
+            {{message.from}} {{formattedTime}} : {{message.text}}
+          </div>
+    
+        <div class="chat__main">
+            <ol id="messages" class="chat__messages"></ol>
+        
+            <div class="chat__footer">
+                <input name="message" type="text" placeholder="Message" #chatText (keyup.enter)="sendMessage($event,chatText.value);chatText.value=''" autofocus autocomplete="off"/>
+                <button (click)="sendMessage($event,chatText.value);chatText.value=''">Send</button>
+            </div>
+        </div>
+    
+    </div>
+    
